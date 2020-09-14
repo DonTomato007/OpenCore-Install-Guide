@@ -271,6 +271,8 @@ A quick TL;DR of needed SSDTs(This is source code, you will have to compile them
 | AMD (15/16h) | N/A | ^^ | N/A | ^^ | N/A |
 | AMD (17h) | [SSDT-CPUR for B550](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-CPUR.aml) | ^^ | N/A | ^^ | N/A |
 
+Note: XLNC made a new version of 'SSDT-CPUR for B550' that enables all cores of Ryzen 9 3950x. The compiled 'SSDT-CPUR.aml' needs to be replaced in the dortania github repository. Link to the new version: https://github.com/naveenkrdy/Misc/tree/master/SSDTs - needs to be compiled first.
+
 ### High End Desktop
 
 | Platforms | **CPU** | **EC** | **AWAC** |
