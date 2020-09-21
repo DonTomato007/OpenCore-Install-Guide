@@ -16,6 +16,7 @@ While still a work in progress, laptop users wanting to convert an existing Clov
 * [Stuck on `[EB|#LOG:EXITBS:START]`](#stuck-on-eb-log-exitbs-start)
 * [Stuck on [EB|LD:OFS] Err(0xE) when booting preboot volume](#stuck-on-eb-ld-ofs-err-0xe-when-booting-preboot-volume)
 * [Can't see macOS partitions](#can-t-see-macos-partitions)
+* [Can't restart or shutdown](#can-t-restart-or-shutdown)
 * [Black screen after picker](#black-screen-after-picker)
 * [Stuck on `OC: OcAppleGenericInput... - Success`](#stuck-on-oc-ocapplegenericinput-success)
 * [Stuck on `OCB: OcScanForBootEntries failure - Not Found`](#stuck-on-ocb-ocscanforbootentries-failure-not-found)
@@ -211,6 +212,21 @@ Main things to check:
   * **HideVerbose**: YES
   * **MinDate**: `-1`
   * **MinVersion**: `-1`
+
+## can't restart, shutdown or sleep
+
+newer generation motherboards come with RGB LED controller that's connected via internal USB port. macOS is not prepared to handle it, and as a result all functions of the motherboard are stopped, but the system will hang instead of restarting. Visually it looks like this: the monitor is black, ethernet LEDs are off, no sound, only the fans are spinning.
+
+In such case forcibly turning off the computer by pressing the power button for 6 sec seams to power off the system, but when turning it on the motherboard will act like brain dead. Follow these steps to turn it off and on properly:
+
+- turn off the power supply for 3 seconds if it has a separate switch on the back - if not, unplug the power cord
+- press the power button shortly to discharge the system (this step seams crucial)
+- turn the power supply switch back on
+- press the power button to initiate a boot
+
+To fix it permanently, you'll have to create a manual mapping of USB ports, detecting which internal USB port the LED controller is connected to and NOT creating a port mapping for it. This will disable the communication between macOS and the LED controller. Follow the OpenCore guide how to creat a manual USB mapping!
+
+This also affects the ability to put the system to sleep.
 
 ## Black screen after picker
 
